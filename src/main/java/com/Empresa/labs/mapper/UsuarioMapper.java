@@ -1,0 +1,55 @@
+package com.Empresa.labs.mapper;
+
+import com.Empresa.labs.dto.*;
+import com.Empresa.labs.entity.Usuario;
+
+public class UsuarioMapper {
+	private UsuarioMapper() {
+	}
+
+	public static UsuarioDTO toDTO(Usuario e) {
+	    if (e == null)
+	        return null;
+
+	    UsuarioDTO d = new UsuarioDTO();
+	    d.setIdUsuario(e.getIdUsuario());
+	    d.setNombre(e.getNombre());
+	    d.setEmail(e.getEmail());
+	    d.setRol(e.getRol());
+	    d.setActivo(e.getActivo());
+	    return d;
+	}
+
+	public static Usuario toEntity(UsuarioCreateDTO c) {
+	    if (c == null) return null;
+
+	    Usuario e = new Usuario();
+	    e.setNombre(c.getNombre());
+	    e.setEmail(c.getEmail());
+	    e.setPassword(c.getPassword());
+	    e.setRol(c.getRol());
+	    e.setActivo(c.getActivo());
+	    return e;
+	}
+
+
+	public static void apply(UsuarioUpdateDTO u, Usuario e) {
+	    if (u == null || e == null)
+	        return;
+
+	    if (u.getNombre() != null)
+	        e.setNombre(u.getNombre());
+
+	    if (u.getEmail() != null)
+	        e.setEmail(u.getEmail());
+
+	    if (u.getPassword() != null)
+	        e.setPassword(u.getPassword());
+
+	    if (u.getRol() != null)
+	        e.setRol(u.getRol());
+
+	    if (u.getActivo() != null)
+	        e.setActivo(u.getActivo());
+	}
+}
