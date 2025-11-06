@@ -15,7 +15,7 @@ public class CorsConfig {
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
 
-        // Orígenes permitidos (ajusta según tu frontend)
+        // Orígenes permitidos 
         config.setAllowedOrigins(List.of(
                 "http://localhost:4200",   // Angular local
                 "http://127.0.0.1:4200"
