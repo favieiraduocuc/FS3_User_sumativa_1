@@ -42,7 +42,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario e = UsuarioMapper.toEntity(dto);
         e.setEmail(email);
 
-        // 🔐 Hashear contraseña antes de guardar
+        //Hashear contraseña antes de guardar
         e.setPassword(passwordEncoder.encode(dto.getPassword()));
 
         Usuario guardado = repo.save(e);
