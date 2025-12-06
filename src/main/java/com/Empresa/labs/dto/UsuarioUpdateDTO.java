@@ -23,4 +23,7 @@ public class UsuarioUpdateDTO {
 
     @Pattern(regexp = "[SN]", message = "El campo activo debe ser 'S' o 'N'")
     private String activo;
+    
+    @Size(max = 15)
+    private String telefono;
 }

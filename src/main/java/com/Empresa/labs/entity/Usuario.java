@@ -39,4 +39,8 @@ public class Usuario {
 
     @Column(name = "ACTIVO", length = 1)
     private String activo = "S";
+    
+    @Size(max = 15)
+    @Column(name = "TELEFONO")
+    private String telefono;
 }

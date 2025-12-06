@@ -31,4 +31,7 @@ public class UsuarioCreateDTO {
 
     @Pattern(regexp = "[SN]", message = "El campo activo debe ser 'S' o 'N'")
     private String activo = "S";
+    
+    @Size(max = 15)
+    private String telefono;
 }

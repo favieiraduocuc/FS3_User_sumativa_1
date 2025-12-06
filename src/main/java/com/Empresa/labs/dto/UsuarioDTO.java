@@ -10,4 +10,5 @@ public class UsuarioDTO {
     private String email;
     private String rol;
     private String activo; // "S" o "N"
+    private String telefono;
 }
