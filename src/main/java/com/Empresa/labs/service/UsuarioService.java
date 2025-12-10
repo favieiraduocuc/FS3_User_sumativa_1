@@ -13,4 +13,8 @@ public interface UsuarioService {
 	List<UsuarioDTO> listar();
 
 	void eliminar(Long id);
+	
+	UsuarioDTO desactivar(Long id);
+	
+	UsuarioDTO activar(Long id);
 }

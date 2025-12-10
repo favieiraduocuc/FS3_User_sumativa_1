@@ -8,6 +8,7 @@ import com.Empresa.labs.strategy.usuario.UsuarioListFilter;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -23,13 +24,18 @@ public class UsuarioController {
         this.listadoService = listadoService;
     }
 
+    // -----------------------------------
+    // 🔹 Crear
+    // -----------------------------------
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UsuarioDTO crear(@Valid @RequestBody UsuarioCreateDTO dto) {
         return service.crear(dto);
     }
 
-    // 🔥 NUEVA IMPLEMENTACIÓN CON PATRÓN STRATEGY
+    // -----------------------------------
+    // 🔹 Listar (Strategy)
+    // -----------------------------------
     @GetMapping
     public List<UsuarioDTO> listar(
             @RequestParam(name = "tipo", required = false, defaultValue = "TODOS")
@@ -43,24 +49,47 @@ public class UsuarioController {
         return listadoService.listar(tipo, filtro);
     }
 
-    /* 
-    ⛔ IMPLEMENTACIÓN ANTERIOR — SE MANTIENE COMENTADA PARA LA EVALUACIÓN
+    /*
+    // Implementación anterior (se deja comentada para la evaluación)
     @GetMapping
     public List<UsuarioDTO> listar() {
         return service.listar();
     }
     */
 
+    // -----------------------------------
+    // 🔹 Obtener por ID
+    // -----------------------------------
     @GetMapping("/{id}")
     public UsuarioDTO obtener(@PathVariable Long id) {
         return service.obtenerPorId(id);
     }
 
+    // -----------------------------------
+    // 🔹 Actualizar
+    // -----------------------------------
     @PutMapping("/{id}")
-    public UsuarioDTO actualizar(@PathVariable Long id, @Valid @RequestBody UsuarioUpdateDTO dto) {
+    public UsuarioDTO actualizar(@PathVariable Long id,
+                                 @Valid @RequestBody UsuarioUpdateDTO dto) {
         return service.actualizar(id, dto);
     }
 
+    // -----------------------------------
+    // 🔹 Desactivar (soft delete)
+    // -----------------------------------
+    @PatchMapping("/{id}/desactivar")
+    public UsuarioDTO desactivar(@PathVariable Long id) {
+        return service.desactivar(id);
+    }
+    
+    @PatchMapping("/{id}/activar")
+    public UsuarioDTO activar(@PathVariable Long id) {
+        return service.activar(id);
+    }
+
+    // -----------------------------------
+    // 🔹 Eliminar (físico) – lo dejamos disponible
+    // -----------------------------------
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(@PathVariable Long id) {
